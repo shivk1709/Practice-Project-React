@@ -1,0 +1,15 @@
+package com.project.project;
+
+public class Practice {
+	
+	public static void main(String args[]) {
+	
+	System.out.println("Hello");
+	
+	SolveInterface sum = (a, b) -> a+b;
+	
+	System.out.println(sum.solve(10, 20));
+	System.out.println(sum.message("Hello World !!"));
+	
+	}
+}

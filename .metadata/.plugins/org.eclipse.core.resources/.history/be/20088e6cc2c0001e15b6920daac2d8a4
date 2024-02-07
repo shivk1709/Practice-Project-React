@@ -1,0 +1,9 @@
+package com.project.project;
+
+public interface SolveInterface {
+	
+	int solve(int a, int b);
+	
+	int add(int a, int b);
+
+}

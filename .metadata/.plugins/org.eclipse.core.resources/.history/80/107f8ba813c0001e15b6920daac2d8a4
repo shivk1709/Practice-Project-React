@@ -1,0 +1,49 @@
+package com.project.mobile.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import com.project.mobile.dtos.MobileDto;
+import com.project.mobile.service.MobileService;
+
+@RestController
+public class MobileController {
+
+	@Autowired
+	private MobileService mobileService;
+
+	@PostMapping("/save")
+	public ResponseEntity<MobileDto> saveMobile(@RequestBody MobileDto mobile) {
+		System.out.println(mobile.getName());
+		return new ResponseEntity<MobileDto>(mobileService.saveInfo(mobile), HttpStatus.OK);
+	}
+
+	@GetMapping("/mobiles")
+	public ResponseEntity<List<MobileDto>> getMobiles() {
+		return new ResponseEntity<List<MobileDto>>(mobileService.getMobiles(), HttpStatus.OK);
+	}
+
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<List<MobileDto>> deleteMobileById(@PathVariable int id) {
+		return new ResponseEntity<List<MobileDto>>(mobileService.deleteMobileInfoById(id), HttpStatus.OK);
+	}
+	
+	@GetMapping("/mobile/{id}")
+	public ResponseEntity<MobileDto> getMobileById(@PathVariable int id){
+		return new ResponseEntity<MobileDto>(mobileService.getMobileById(id), HttpStatus.OK);
+	}
+	
+	@PatchMapping("/reset/{id}")
+	public ResponseEntity<MobileDto> resetQuantity(@PathVariable int id){
+		return new ResponseEntity<MobileDto>(mobileService.resetQuantity(id), HttpStatus.OK);
+	}
+}
